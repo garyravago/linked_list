@@ -2,18 +2,35 @@ class Stack
   attr_reader :data
 
   def initialize
-      @data = nil
+    @data = nil
   end
 
-  # Push a value onto the stack
   def push(value)
-      
+    #puts "Pushing #{value} on to the stack"
+    if @data
+      node = LinkedListNode.new(value, @data)
+      @data = node
+    else
+      node = LinkedListNode.new(value)
+      @data = node
+    end
   end
 
-  # Pop an item off the stack.
-  # Remove the last item that was pushed onto the
-  # stack and return the value to the user
   def pop
-      
+    if @data
+      #puts "Popping #{@data.value} from the top of the stack"
+      top_stack_value_to_pop = @data.value
+      new_top_node = @data.next_node
+      @data = new_top_node
+      top_stack_value_to_pop
+    else
+      #puts "The stack is empty"
+      @data
+    end
   end
 end
+
+
+
+
+
